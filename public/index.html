@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shortUrlApp">
+<head>
+    <title>URL Shortener Microservice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+<script src="./js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">
+            API Basejump: URL Shortener Microservice
+        </h1>
+        <blockquote>
+            User stories:
+            <ul>1) I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.</ul>
+            <ul>2) If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.</ul>
+            <ul>3) When I visit that shortened URL, it will redirect me to my original link.</ul>
+        </blockquote>
+        <h3>Example usage:</h3>
+        <code>https://martin885-mat885-timestamp-microservice.glitch.me/December%2015,%202015</code><br>
+        <code>https://martin885-mat885-timestamp-microservice.glitch.me/1450137600</code>
+        <h3>Example output:</h3>
+        <code>
+            {
+              "unix": 1515812400,
+              "natural": "January 13, 2018"
+            }
+        </code>
+    </div>
+    <br>
+    <br>
+    <section ng-controller="shortAppCtrl" class="container">
+        <input type="text" placeholder="Add url..." ng-model="urlToShorten">
+        <a class="btn btn-primary" href="/new/{{urlToShorten}}">Get Short Url</a> 
+    </section>
+</body>
+</html>

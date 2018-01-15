@@ -13,7 +13,7 @@ const app = express();
 
 app.use('/', express.static(__dirname + '/public'));
 
-app.get('/new/:longUrl', function (req, res, next) {
+app.get('/new/:longUrl(*)', function (req, res, next) {
     var longUrl = req.params.longUrl;
     var regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
     if (regex.test(longUrl)) {

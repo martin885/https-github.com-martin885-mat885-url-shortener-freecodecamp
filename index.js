@@ -1,7 +1,9 @@
 'use strict'
 const express = require('express');
 const mongoose = require('mongoose');
+const shortId=require('shortid');
 require('dotenv').config();
+
 // const moduleHeader = require('./moduleHeader');
 const shortUrl = require('./models/shortUrl.js');
 
@@ -17,7 +19,7 @@ app.get('/new/:longUrl(*)', function (req, res, next) {
     var longUrl = req.params.longUrl;
     var regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
     if (regex.test(longUrl)) {
-        var short = Math.floor(Math.random() * 10000).toString();
+        var short = shortId.generate();
         var data = new shortUrl({
             originalUrl: longUrl,
             shorterUrl: short
@@ -42,7 +44,6 @@ app.get('/new/:longUrl(*)', function (req, res, next) {
 app.get('/:urlToForward', function (req, res, next) {
     var urlToForward = req.params.urlToForward;
 
-    console.log('OOOKKKK');
     shortUrl.findOne({ shorterUrl: urlToForward }, function (err, doc) {
         if (err) { res.send('Sorry an error has occurred'); }
 

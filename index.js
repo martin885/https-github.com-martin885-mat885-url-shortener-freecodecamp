@@ -20,7 +20,7 @@ app.get('/new/:longUrl', function (req, res, next) {
         var short = Math.floor(Math.random() * 10000).toString();
         var data = new shortUrl({
             originalUrl: longUrl,
-            shorterUrl: 'https://mat885-url-shortener-freecodecamp.glitch.me/'+short
+            shorterUrl: short
         });
         data.save(function (err) {
             if (err) {
@@ -30,7 +30,7 @@ app.get('/new/:longUrl', function (req, res, next) {
 
         });
 
-            res.json({originalUrl:data.originalUrl,shorterUrl:data.shorterUrl});
+            res.json({originalUrl:data.originalUrl,shorterUrl:'https://mat885-url-shortener-freecodecamp.glitch.me/'+data.shorterUrl});
 
     }
     else {
